@@ -9,7 +9,6 @@ if [ $? -eq 1 ]; then
 fi
 
 which pnpm &> /dev/null
-if [ $? -eq 1 ]; then
         echo "PNPM was not detected on your system. Ensure the 'pnpm' command is in your \$PATH. You are **not** able to use Yarn or NPM."
         exit 1
 fi
@@ -30,7 +29,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
                 ARCH_BINDGEN_DEPS="clang" # Bindgen dependencies - it's used by a dependency of Spacedrive
 
                 sudo pacman -Syu
-                sudo pacman -S --needed $ARCH_TAURI_DEPS $ARCH_FFMPEG_DEPS $ARCH_BINDGEN_DEPS
         elif which dnf &> /dev/null; then
                 echo "Detected 'dnf' based distro!"
                 FEDORA_TAURI_DEPS="webkit2gtk3-devel.x86_64 openssl-devel curl wget libappindicator-gtk3 librsvg2-devel" # Tauri dependencies
@@ -46,7 +44,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         fi
 
         echo "Your machine has been setup for Spacedrive development!"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
         brew install ffmpeg
 else
         echo "Your OS '$OSTYPE' is not supported by this script. We would welcome a PR or some help adding your OS to this script. https://github.com/spacedriveapp/spacedrive/issues"
